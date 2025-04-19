@@ -237,20 +237,44 @@ if __name__ == "__main__":
     # benchs = ["bird_train"]
     # benchs = ["bird_dev"]
     # benchs = ["spider"]
-    # benchs = [
-    #     "DB_schema_synonym",
-    #     "DB_schema_abbreviation",
-    #     "DB_DBcontent_equivalence",
-    # ]
+
+    benchs = [
+        # "DB_schema_synonym",
+        # "DB_schema_abbreviation",
+        "DB_DBcontent_equivalence",
+    ]
 
     for bench in benchs:
-        DB_BASE = "<Anonymous>"
-        TABLE_PATH = "<Anonymous>"
+        # if bench == "spider":
+        #     DB_BASE = SPIDER_BASE / "database"
+        #     TABLE_PATH = SPIDER_BASE / "tables.json"
+        # elif bench == "bird_train":
+        #     DB_BASE = BIRD_TRAIN_BASE / "train_databases"
+        #     TABLE_PATH = BIRD_TRAIN_BASE / "train_tables.json"
+        # elif bench == "bird_dev":
+        #     DB_BASE = BIRD_DEV_BASE / "dev_databases"
+        #     TABLE_PATH = BIRD_DEV_BASE / "dev_tables.json"
+
+        if bench == "DB_schema_synonym":
+            DB_BASE = Path("/Users/gobegobe/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/database_post_perturbation")
+            TABLE_PATH = Path("/Users/gobegobe/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/tables_post_perturbation.json")
+        elif bench == "DB_schema_abbreviation":
+            DB_BASE = Path("/Users/gobegobe/diagnostic-robustness-text-to-sql/data/DB_schema_abbreviation/database_post_perturbation")
+            TABLE_PATH = Path("/Users/gobegobe/diagnostic-robustness-text-to-sql/data/DB_schema_abbreviation/tables_post_perturbation.json")
+        elif bench == "DB_DBcontent_equivalence":
+            DB_BASE = Path("/Users/gobegobe/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/database_post_perturbation")
+            TABLE_PATH = Path(
+                "/Users/gobegobe/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/tables_post_perturbation.json"
+            )
 
         with open(TABLE_PATH) as f:
             tables = json.load(f)
 
         db_ids = sorted([table["db_id"] for table in tables])
+
+        # if bench == "spider":
+        #     db_ids = [db_id for db_id in db_ids if db_id != "scholar" and db_id != "formula_1"]
+        #     db_ids = ["scholar"]
         ir_set = []
 
         for db_id in db_ids:
