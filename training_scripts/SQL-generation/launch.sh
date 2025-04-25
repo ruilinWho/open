@@ -1,10 +1,18 @@
-# sh launch.sh 7e-5
+###########################################################
+# This script utilize `./tune_generation.py` to perform SQL generation training with SFT
+# Here's some paths need to configure
+#   1. sft_name: The filename that contains the training data
+#      We used `data_for_training/SQL_generation/Spider-BIRD-Gen-Mix.json` to do this.
+#   2. model_name: base LLM name or path
+#   3. storage_dir: The base path to store the trained model
+#   4. model_dir: The cache directory that contains the base LLM
+############################################################
 export OMP_NUM_THREADS=4
 
 # model
 lr=$1
 
-sft_name=${DATA_PATH}
+sft_name=${PATH_TO_SFT_DATA}
 
 # Constants & Directories
 model_name=${YOUR_MODEL}

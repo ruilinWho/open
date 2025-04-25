@@ -14,6 +14,8 @@ This repository contains source code of `OpenSQL` , specifically:
 
 Below we introduce the files in each folder and respective uses and meanings.
 
+**Note: We added corresponding descriptions in each file.**
+
 ## 1. Training scripts
 
 The training scripts and launch scripts are contained in `./training_scripts`.
@@ -39,7 +41,7 @@ The scripts for our data augmentation are contained in `./data_augmentation`.
 
 We provide augmented data for training three components of `OpenSQL`
 
-1. `schema_linking.zip` contains the data for training schema linking models (including SFT training data and DPO training data)
+1. `schema_linking_all.zip` contains the data for training schema linking models (including SFT training data and DPO training data)
 2. `SQL_generation.zip` contains the data for training SQL generators. For each datapoint, we augment multiple equivalent SQL queries for training.
 3. `SQL_selection.zip` contains the data for training the pairwise SQL selector. For each datapoint, we attached a detailed stepwise rationale into it to support training the stepwise selector.
 

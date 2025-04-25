@@ -2,6 +2,7 @@
 # This script utilize `./dpo.py` to perform global schema linking with DPO
 # Here's some paths/parameters need to be configured
 #   1. sft_name: The filename that contains the training data
+#       We used `data_for_training/schema_linking_all/schema_linking.json` to do this.
 #   2. model_name: base LLM name or path
 #   3. storage_dir: The base path to store the trained model
 #   4. base_path: The path to the SFT-trained global linker
