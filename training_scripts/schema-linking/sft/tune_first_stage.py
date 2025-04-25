@@ -39,7 +39,6 @@ class CustomConfig:
     cache_dir: str = field()
     model_storage_dir: str = field()
     finetune_data_dir: str = field()
-    validation_data_dir: str = field()
     clean_long_data: bool = field()
 
 
@@ -121,12 +120,8 @@ if __name__ == "__main__":
         cache_dir=custom_config.cache_dir,
     )
     tokenizer.padding_side = "right"
-    
-    tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+    tokenizer.add_special_tokens({"pad_token": "[PAD]"})
     model.resize_token_embeddings(len(tokenizer))
-    # tokenizer.padding_side = "left"
-
-    
 
     ##############
     # 3. Dataset #

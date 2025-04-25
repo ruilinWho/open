@@ -1,4 +1,11 @@
-# sh launch.sh 1e-5
+###########################################################
+# This script utilize `./tune_first_stage.py` to perform global schema linking with SFT
+# Here's some paths need to configure
+#   1. sft_name: The filename that contains the training data
+#   2. model_name: base LLM name or path
+#   3. storage_dir: The base path to store the trained model
+#   4. model_dir: The cache directory that contains the base LLM
+############################################################
 export OMP_NUM_THREADS=4
 
 # model
@@ -10,7 +17,6 @@ sft_name=DPO_SFT_Mix_1123.json
 # Constants & Directories
 # model_name=Qwen/Qwen2.5-Coder-7B-Instruct
 model_name=meta-llama/Llama-3.1-8B-Instruct
-dataset_dir=/home/ubuntu/dataset
 storage_dir=/home/ubuntu
 model_dir=/home/ubuntu/pretrained-models
 
@@ -20,7 +26,6 @@ accelerate launch --config_file=/home/ubuntu/configs/TRAIN_SFT.json tune_first_s
     --cache_dir ${model_dir} \
     --model_storage_dir ${storage_dir}/tuned_Llama/linker-dpo-base/ \
     --finetune_data_dir ${sft_name} \
-    --validation_data_dir ${dataset_dir}/bird_dev_dynamic_link.json \
     --model_name_or_path ${model_name} \
     --attn_implementation flash_attention_2 \
     --torch_dtype bfloat16 \
@@ -41,12 +46,3 @@ accelerate launch --config_file=/home/ubuntu/configs/TRAIN_SFT.json tune_first_s
     --report_to none \
     --max_seq_length 13000 \
     --clean_long_data
-
-accelerate launch --config_file=/home/ubuntu/configs/INFER.json validate_model.py \
-    --model_storage_dir ${storage_dir}/tuned_Llama/linker-dpo-base/ \
-    --model_name_or_path ${model_name} \
-    --attn_implementation flash_attention_2 \
-    --torch_dtype bfloat16 \
-    --output_dir ${storage_dir} \
-    --learning_rate ${lr} \
-    --validation_data_dir ${dataset_dir}/bird_dev_dynamic_link.json

@@ -1,3 +1,9 @@
+#######################################################################
+# This script is used to build diversified SQL generation data for training.
+# It generates multiple SQL queries for each data point in the dataset.
+# Note: Some paths have been anonymized to avoid identity disclosure.
+#######################################################################
+
 import concurrent.futures
 import copy
 import functools
@@ -158,7 +164,6 @@ def run_query_with_timeout(db_path, query, timeout=30):
         return result
     except concurrent.futures.TimeoutError:
         print("TimeoutError: ", query)
-        # 尝试杀掉子进程
         for proc in executor._processes.values():
             try:
                 os.kill(proc.pid, signal.SIGTERM)
@@ -167,7 +172,6 @@ def run_query_with_timeout(db_path, query, timeout=30):
                 print(f"Failed to kill process {proc.pid}: {e}")
         raise func_timeout.FunctionTimedOut("Query execution timed out.")
     finally:
-        # 关闭 executor，并尽快回收资源
         executor.shutdown(wait=False)
 
 

@@ -29,9 +29,9 @@ The training scripts and launch scripts are contained in `./training_scripts`.
 The scripts for our data augmentation are contained in `./data_augmentation`.
 
 1. schema linking
-   1. `./data_augmentation/schema_linking_SFT.ipynb` : from raw SQL queries, extract referred tables and columns to construct data for global schema linking (SFT).
-   2. `./data_augmentation/schema_linking_local.ipynb`: from raw SQL queries and databases, construct binary classification training data for local schema linking.
-   3. `./data_augmentation/schema_linking_DPO.ipynb`: from global schema linking training data, randomly remove tables and columns to construct training data for schema-aware preference learning.
+   1. `./data_augmentation/schema_linking_SFT.py` : from raw SQL queries, extract referred tables and columns to construct data for global schema linking (SFT).
+   2. `./data_augmentation/schema_linking_local.py`: from raw SQL queries and databases, construct binary classification training data for local schema linking.
+   3. `./data_augmentation/schema_linking_DPO.py`: from global schema linking training data, randomly remove tables and columns to construct training data for schema-aware preference learning.
    4. `./data_augmentation/diversified_SQL_generation.py` : incorporated an rephrase LLM to generate multiple equivalent queries.
    5. `./data_augmentation/stepwise_selection.ipynb`: incorporate and annotation LLM to generate stepwise reasoning paths for SQL pairwise comparison.
 

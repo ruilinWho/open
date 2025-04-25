@@ -1,3 +1,11 @@
+###########################################################
+# This script utilize `./local.py` to perform local schema linking with SFT
+# Here's some paths need to configure
+#   1. {$1}: The filename that contains the training data
+#   2. model: base LLM name or path
+#   3. cache_dir: The cache directory that contains the base LLM
+############################################################
+
 export OMP_NUM_THREADS=4
 # path
 sh_path=$(dirname "$(readlink -f "$0")")

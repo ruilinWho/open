@@ -1,12 +1,21 @@
+###########################################################
+# This script utilize `./dpo.py` to perform global schema linking with DPO
+# Here's some paths/parameters need to be configured
+#   1. sft_name: The filename that contains the training data
+#   2. model_name: base LLM name or path
+#   3. storage_dir: The base path to store the trained model
+#   4. base_path: The path to the SFT-trained global linker
+#   5. hyper-parameters: lr, beta, rpo_alpha
+############################################################
+
 #################### Constants ###################
 export OMP_NUM_THREADS=4
 #################### Directories ###################
 model_name={MODEL_NAME}
-dataset_dir=/home/ubuntu/dataset
 storage_dir=/home/ubuntu
 
 ################### Change-able Path ###################
-sft_name=DPO_SFT_Mix_1123.json
+sft_name=${TRAINING_DATA_PATH}
 base_path=${YOUR_PATH}
 
 ################### Tunable Parametera ##################
