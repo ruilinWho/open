@@ -1,3 +1,9 @@
+#######################################################################
+# This script is used to embed the values of the TEXT-like columns of the tables in the database.
+# It also provides a function to retrieve similar strings from the embedded values.
+# Note: Some paths have been anonymized to avoid identity disclosure.
+#######################################################################
+
 import pickle
 import sqlite3
 from dataclasses import dataclass
@@ -84,32 +90,3 @@ def embed_values_in_db(bench: str, db_base_path: str, db_id: str, embed_model: S
 
     with open(OUTPUT_DIR / f"{db_id}.pkl", "wb") as f:
         pickle.dump(all_indexes, f)
-
-
-# if __name__ == "__main__":
-#     DEFAULT_MODEL = "Alibaba-NLP/gte-large-en-v1.5"
-#     emb_model = SentenceTransformer(DEFAULT_MODEL, device="cuda:3", trust_remote_code=True)
-#     # bench = ["spider-train", "spider-dev"]  #
-#     bench = ["bird-train", "bird-dev"]
-#     for b in bench:
-#         match b:
-#             case "spider-train":
-#                 DB_BASE = Path().cwd().parent / "dataset" / "spider" / "database"
-#             case "spider-dev":
-#                 DB_BASE = Path().cwd().parent / "dataset" / "spider" / "database"
-#             case "bird-train":
-#                 DB_BASE = Path("/ssd/yizhe/lin/bird/bird-train/train_databases")
-#             case "bird-dev":
-#                 DB_BASE = Path("/ssd/yizhe/lin/bird/bird-dev/dev_databases")
-#             case _:
-#                 raise ValueError(f"Unknown benchmark: {b}")
-
-#         # each database is in a folder with the name of the database
-#         for db_path in DB_BASE.iterdir():
-#             if not db_path.is_dir():
-#                 continue
-
-#             db_id = db_path.stem
-#             embed_values_in_db(b, DB_BASE, db_id, emb_model)
-
-#     print("Done!")

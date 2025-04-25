@@ -1,3 +1,8 @@
+#######################################################################
+# This script is used to transform an IR and a sub-schema into a schema string representation.
+# Note: Some paths have been anonymized to avoid identity disclosure.
+#######################################################################
+
 import json
 from typing import Optional
 
@@ -123,7 +128,7 @@ class IR2Schema:
         statement_latter += "\n);\n"
 
         # Do the former
-        former_statement = f'Table {table["table_name"]} ({table["table_comment"]}\n'
+        former_statement = f"Table {table['table_name']} ({table['table_comment']}\n"
         chosen_columns = []
 
         for column in table["columns"]:
