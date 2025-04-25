@@ -23,7 +23,7 @@ Response_template = "Response: \n"
 @dataclass
 class CustomConfig:
     cache_dir: str = field()
-    base_path: str
+    base_path: str = field()
     model_storage_dir: str = field()
     finetune_data_dir: str = field()
 
@@ -175,7 +175,6 @@ if __name__ == "__main__":
     finetune_data_json = json.load(open(custom_config.finetune_data_dir, "r"))
     print("##### All train data size:", len(finetune_data_json))
 
-    # 转换为 Hugging Face 数据集
     train_data = Dataset.from_list(finetune_data_json)
     train_data = train_data.shuffle()
 

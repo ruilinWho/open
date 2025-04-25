@@ -5,7 +5,7 @@
 #      For Spider-dev, We used `data_for_training/SQL_selection/spider-selection.json` to do this.
 #      For BIRD-dev, We used `data_for_training/SQL_selection/spider-selection.json` to do this.
 #   2. model_name: base LLM name or path
-#   3. cache_dir: The cache directory that contains the base LLM
+#   3. base_path: The path of base LLM to fine-tune from
 #   4. lr($1) learning rate; epoch_num($2) training epoches (4 is suggested)
 ############################################################
 
@@ -17,6 +17,7 @@ parent_dir=$(dirname "$sh_path")
 config_dir=/home/ubuntu/configs
 model_name=/home/ubuntu/pretrained-models/Llama-3.1-8B-Instruct
 sft_name=${PATH_TO_SFT_DATA}
+base_path=${BASE_MODEL_PATH}
 lr=$1
 epoch_num=$2
 cache_dir=/home/ubuntu/pretrained-models
